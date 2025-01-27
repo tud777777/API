@@ -11,8 +11,13 @@ class File extends Model
         'file_name'
     ];
 
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
     public function coauthor_file()
     {
-        return $this->hasMany(Coauthor::class, 'file_id', 'id');
+        return $this->belongsToMany(User::class, 'coauthor', 'file_id', 'user_id');
     }
+
 }

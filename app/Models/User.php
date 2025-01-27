@@ -43,7 +43,7 @@ class User extends Authenticatable
     }
     public function coauthor_user()
     {
-        return $this->hasMany(Coauthor::class, 'user_id', 'id');
+        return $this->belongsToMany(File::class, 'coauthors', 'user_id', 'file_id');
     }
 
 }
