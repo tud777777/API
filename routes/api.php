@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::middleware(\App\Http\Middleware\CorsMiddleware::class)->group(function () {
 Route::post('/registration', [AuthController::class, 'reg']);
 Route::post('/authorization', [AuthController::class, 'aut']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/files/{file_id}/access', [FilesController::class, 'access_del']);
     Route::delete('/files/{file_id}', [FilesController::class, 'delete']);
     Route::get('/files/{file_id}', [FilesController::class, 'download']);
+});
 });
